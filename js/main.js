@@ -1,8 +1,8 @@
-var glasses = 0;
+var eggs = 0;
 
 function workClick(number){
-    glasses = glasses + number;
-    document.getElementById("glasses").innerHTML = glasses;
+    eggs = eggs + number;
+    document.getElementById("eggs").innerHTML = eggs;
 	calculateTickAmount();
 };
 
@@ -10,11 +10,11 @@ var money = 0;
 var sellingPrice = .5;
 
 function sellGoggles(){
-	glassesAvail = Math.floor(glasses);
-	money = money + glassesAvail*sellingPrice;
-	glasses = glasses - glassesAvail;
+	eggsAvail = Math.floor(eggs);
+	money = money + eggsAvail*sellingPrice;
+	eggs = eggs - eggsAvail;
 	document.getElementById('money').innerHTML = money.toFixed(2);
-	document.getElementById('glasses').innerHTML = glasses;
+	document.getElementById('eggs').innerHTML = eggs;
 	document.getElementById('sellingPrice').innerHTML = sellingPrice.toFixed(2);
 	calculateTickAmount();
 };
@@ -27,9 +27,9 @@ function buyFriend(number){
     var friendCost = Math.floor(10 * Math.pow(1.1,friends*number));     //works out the cost of this friend for number ==10
     if(money >= friendCost){                                   //checks that the player can afford the friend
         friends = friends + number;                                   //increases number of friends
-    	money = money - friendCost;                          //removes the glasses spent
+    	money = money - friendCost;                          //removes the eggs spent
         document.getElementById('friends').innerHTML = friends; 
-        document.getElementById('money').innerHTML = money.toFixed(2);  //updates the number of glasses for the user
+        document.getElementById('money').innerHTML = money.toFixed(2);  //updates the number of eggs for the user
     };
     var nextFriend = Math.floor(10 * Math.pow(1.1,friends));       //works out the cost of the next friend
     document.getElementById('friendCost1').innerHTML = nextFriend;  //updates the cursor cost for the user
@@ -111,11 +111,11 @@ function buyClass(number){
 
 function buyStudentWeight(){
     var studentWeightCost = Math.floor(10 * Math.pow(1.5,studentWeight))+10;   
-    if(glasses >= studentWeightCost){                                  
+    if(eggs >= studentWeightCost){                                  
         studentWeight = studentWeight + 1;                                
-    	glasses = glasses - studentWeightCost;                        
+    	eggs = eggs - studentWeightCost;                        
         document.getElementById('studentWeight').innerHTML = studentWeight; 
-        document.getElementById('glasses').innerHTML = glasses;  
+        document.getElementById('eggs').innerHTML = eggs;  
     };
     var nextStudentWC = Math.floor(1 * Math.pow(1.001,studentWeight)+25);       //works out the cost of the next friend
     document.getElementById('studentWeightCost').innerHTML = nextStudentWC;  //updates the cursor cost for the user
@@ -124,11 +124,11 @@ function buyStudentWeight(){
 var contract = 0;
 function getContract(number){
 	var contractCost = 100 * Math.pow(2, contract);
-	if(glasses >= contractCost){
+	if(eggs >= contractCost){
 		contract = contract + number;
-		glasses = glasses - contractCost;
+		eggs = eggs - contractCost;
 		sellingPrice = sellingPrice + .2;
-		document.getElementById('glasses').innerHTML = glasses;
+		document.getElementById('eggs').innerHTML = eggs;
 		document.getElementById('sellingPrice').innerHTML = sellingPrice.toFixed(2);
 		document.getElementById('contract').innerHTML = contract;
 	};
