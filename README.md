@@ -1,2 +1,4 @@
-# Game
-Angular game created for learning AngularJS.
+# test
+LOOOOl
+
+<a href="https://bibbca.github.io/studious-goggles/">https://bibbca.github.io/studious-goggles/</a>
