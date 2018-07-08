@@ -1,15 +1,49 @@
-<ul>
-        <script src="/node_modules/angular/angular.js"></script>
-    <li>
-      <span>Nexus S</span>
-      <p>
-        Fast just got faster with Nexus S.
-      </p>
-    </li>
-    <li>
-      <span>Motorola XOOM™ with Wi-Fi</span>
-      <p>
-        The Next, Next Generation tablet.
-      </p>
-    </li>
-  </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Game</title>
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/bower_components/AdminLTE/dist/css/AdminLTE.min.css" rel="stylesheet">
+    <link href="/bower_components/AdminLTE/dist/css/skins/_all-skins.min.css" rel="stylesheet">
+    <link href="/dist/css/style.css" rel="stylesheet">
+</head>
+<body class="sidebar-collapse" ng-app="game">
+<div class="wrapper">
+
+    <header class="main-header">
+        <nav/>
+    </header>
+
+
+    <div class="content-wrapper">
+        <div class="content">
+            <section class="content-header">
+                <h2>The Game</h2>
+            </section>
+
+            <section>
+                <div class="col-xs-12">
+                    <game-stats></game-stats>
+                </div>
+
+                <div class="col-xs-6">
+                    <h2>Items</h2>
+                    <game-items></game-items>
+                </div>
+
+                <div class="col-xs-6">
+                    <h2>Actions</h2>
+                    <game-actions></game-actions>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<script src="/bower_components/angular/angular.min.js"></script>
+<script src="/dist/js/script.js"></script>
+</body>
+</html>
