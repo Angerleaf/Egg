@@ -156,6 +156,7 @@ var interval = setInterval(function() {
     document.getElementById('bees.total').innerHTML = bees.total;
     document.getElementById('bees.cost').innerHTML = Math.floor(10 * Math.pow(1.1,bees.total));
     document.getElementById('battery.level').innerHTML = battery.level;
+    document.getElementById('battery.capacity').innerHTML = battery.capacity;
     document.getElementById('battery.cost').innerHTML = Math.floor(10 * Math.pow(1.1,battery.level));
     document.getElementById('strength.cost').innerHTML = Math.floor(10 * Math.pow(1.1,strength.level));
     document.getElementById("energy.clickadd").innerHTML = energy.clickadd;
@@ -169,20 +170,20 @@ var interval = setInterval(function() {
     .text("Battery " + current_progress + "%");
     if(current_progress >= 50) {
         $('#dynamic').removeClass("progress-bar progress-bar-striped progress-bar-animated");
-        $('#dynamic').addClass("progress-bar progress-bar-warning progress-bar-striped progress-bar-animated");  
+        $('#dynamic').addClass("progress-bar bg-warning progress-bar-striped progress-bar-animated");  
     }
     else {
-        $('#dynamic').removeClass("progress-bar progress-bar-warning progress-bar-striped progress-bar-animated");
-        $('#dynamic').removeClass("progress-bar progress-bar-danger progress-bar-striped progress-bar-animated");
+        $('#dynamic').removeClass("progress-bar bg-warning progress-bar-striped progress-bar-animated");
+        $('#dynamic').removeClass("progress-bar bg-danger progress-bar-striped progress-bar-animated");
         $('#dynamic').addClass("progress-bar progress-bar-striped progress-bar-animated");
     }
     if(current_progress >= 90) {
-        $('#dynamic').removeClass("progress-bar progress-bar-warning progress-bar-striped progress-bar-animated");
+        $('#dynamic').removeClass("progress-bar bg-warning progress-bar-striped progress-bar-animated");
         $('#dynamic').removeClass("progress-bar progress-bar-striped progress-bar-animated");
-        $('#dynamic').addClass("progress-bar progress-bar-danger progress-bar-striped progress-bar-animated");
+        $('#dynamic').addClass("progress-bar bg-danger progress-bar-striped progress-bar-animated");
     }
     else {
-        $('#dynamic').removeClass("progress-bar progress-bar-danger progress-bar-striped progress-bar-animated");
+        $('#dynamic').removeClass("progress-bar bg-danger progress-bar-striped progress-bar-animated");
         $('#dynamic').addClass("progress-bar progress-bar-striped progress-bar-animated");
     }
     
