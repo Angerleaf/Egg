@@ -1,0 +1,117 @@
+<html>
+	<head>
+        <title>Animal Powerplant</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+        <div class="container">
+                <div class="alert alert-info alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Hello!</strong> This alert box could indicate a neutral informative change or action.
+                      </div>
+            <br />
+            <div class="progress">
+                        <div id="dynamic" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                          <span class="sr-only"><span id="current-progress"></span>
+                        </div>
+                      </div>
+            <div class="row">
+                <div class="col-sm-4"><button type="button" class="btn btn-info" onclick="energyAdd(energy.clickadd)">Create Energy +<span id="energy.clickadd">1</span></button>
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-warning" onclick="energySell()">Sell Energy</button></div>
+                <div class="col-sm-8">Energy: <kbd><span id="energy.total">0</span></kbd></div>
+                <div class="col-sm-8">Battery: <kbd><span id="battery.capacity">100</span></kbd></div>
+                <div class="col-sm-8">Money: <kbd><span id="money.total">0</span>$</kbd></div>
+            </div>
+            <br />
+            <ul class="nav nav-tabs">
+                    <li class="active"><a href="#home"><span class="glyphicon glyphicon-list"></span> Home</a></li>
+                    <li><a href="#animals"><span class="glyphicon glyphicon-shopping-cart"></span> Animal Shop</a></li>
+            </ul>
+            <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                      <h3>Stats</h3>
+                      <button type="button" class="btn btn-primary" onclick="speed(100)">Speed x10</span></button>
+                      <button type="button" class="btn btn-primary" onclick="speed(1000)">Speed Normal</span></button>
+                      <button type="button" class="btn btn-primary" onclick="saveG()">Save</span></button>
+                      <button type="button" class="btn btn-primary" onclick="loadG()">Load</span></button>
+                      <button type="button" class="btn btn-primary" onclick="resetG()">Reset</span></button>
+                      <p>Energy stats...</p>
+                    </div>
+                    <div id="animals" class="tab-pane fade">
+                      <h3>Animal Shop</h3>
+                      <div class="row">
+                            <div class="col-sm-4">
+                                <h4><span class="glyphicon glyphicon-piggy-bank"></span> Ants</h4>
+                                <button id="ant" type="button" class="btn btn-danger" onclick="buyAnt()" href="#" data-toggle="tooltip" data-placement="bottom" title="Buy an ant so that it can make energy for you."><span class="glyphicon glyphicon-usd"></span> Buy Ant</button>
+                                <br />
+                                Ants: <span id="ants.total">0</span>
+                                <br />
+                                Ant Cost: <span id="ants.cost">10</span>$
+                            </div>
+                            <div class="col-sm-4">
+                                <h4><span class="glyphicon glyphicon-piggy-bank"></span> Bees</h4>
+                                <button id="bee" type="button" class="btn btn-danger" onclick="buyBee()" href="#" data-toggle="tooltip" data-placement="bottom" title="Buy a bee so that it can make energy for you."><span class="glyphicon glyphicon-usd"></span> Buy Bee</button>
+                                <br />
+                                Bees: <span id="bees.total">0</span>
+                                <br />
+                                Bee Cost: <span id="bees.cost">10</span>$</div>
+                            <div class="col-sm-4">
+                                <h4><span class="glyphicon glyphicon-flash"></span> Battery</h4>
+                                <button id="batt" type="button" class="btn btn-danger" onclick="buyBattery()" href="#" data-toggle="tooltip" data-placement="bottom" title="Buy a bigger battery."><span class="glyphicon glyphicon-usd"></span> Buy a battery</button>
+                                <br />
+                                Battery level: <span id="batteryLevel">1</span>
+                                <br />
+                                Battery Cost: <span id="battery.cost">11</span>$
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-4">
+                                    <h4><span class="glyphicon glyphicon-signal"></span> Strength</h4>
+                                    <button id="str" type="button" class="btn btn-danger" onclick="buyStrength()" href="#" data-toggle="tooltip" data-placement="bottom" title="Clicks make more energy."><span class="glyphicon glyphicon-usd"></span> Buy Strength</button>
+                                    <br />
+                                    Strength: <span id="strength.level">0</span>
+                                    <br />
+                                    Strength Cost: <span id="strength.cost">10</span>$
+                                </div>
+                                <div class="col-sm-4">
+                                    <h4><span class="glyphicon glyphicon-piggy-bank"></span> Bees</h4>
+                                    <button id="2" type="button" class="btn btn-danger" onclick="buyBee()" href="#" data-toggle="tooltip" data-placement="bottom" title="Buy a bee so that it can make energy for you."><span class="glyphicon glyphicon-usd"></span> Buy Bee</button>
+                                    <br />
+                                    Bees: <span id="bees.total">0</span>
+                                    <br />
+                                    Bee Cost: <span id="bees.cost">10</span>$</div>
+                                <div class="col-sm-4">
+                                    <h4><span class="glyphicon glyphicon-flash"></span> Battery</h4>
+                                    <button id="2" type="button" class="btn btn-danger" onclick="buyBattery()" href="#" data-toggle="tooltip" data-placement="bottom" title="Buy a bigger battery."><span class="glyphicon glyphicon-usd"></span> Buy a battery</button>
+                                    <br />
+                                    Battery level: <span id="battery.level">1</span>
+                                    <br />
+                                    Battery Cost: <span id="battery.cost">11</span>$
+                          </div>
+                    </div>
+                    </div>
+            </div>
+
+        </div>
+        <script>
+                $(document).ready(function(){
+                    $('[data-toggle="tooltip"]').tooltip();   
+                });
+        </script>
+        <script>
+                $(document).ready(function(){
+                    $(".nav-tabs a").click(function(){
+                        $(this).tab('show');
+                    });
+                });
+        </script>
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
