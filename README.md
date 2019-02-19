@@ -1,3 +1,3 @@
 # Egg
 
-<p href="https://angerleaf.github.io/Egg">The Game</p>
+<a href="https://angerleaf.github.io/Egg">The Game</a>
