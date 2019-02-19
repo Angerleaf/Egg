@@ -29,6 +29,11 @@ strength = {
     name:'strength',
     level:0,
     cost:10,
+},
+total = {
+    energy:0,
+    soldenergy:0,
+    money:0,
 }
 var spd = 1000;
 
@@ -40,6 +45,7 @@ function saveG() {
         bees: bees,
         battery: battery,
         strength: strength,
+        total: total,
     }
     localStorage.setItem("save",JSON.stringify(save));
 }
@@ -52,6 +58,7 @@ function loadG() {
     if (typeof savegame.bees !== "undefined") bees = savegame.bees;
     if (typeof savegame.battery !== "undefined") battery = savegame.battery;
     if (typeof savegame.strength !== "undefined") strength = savegame.strength;
+    if (typeof savegame.total !== "undefined") total = savegame.total;
 }
 
 function resetG() {
@@ -85,51 +92,61 @@ function resetG() {
         name:'strength',
         level:0,
         cost:10,
+    },
+    total = {
+        energy:0,
+        soldenergy:0,
+        money:0,
     }    
 }
 
 function energyAdd(number){
     if(energy.total < battery.capacity){
         energy.total = energy.total + number;
+        total.energy += number;
     }   
 }
 
 function energySell(){
     money.total += energy.total;
-    energy.total = 0; 
+    total.soldenergy += energy.total;
+    total.money += energy.total;
+    energy.total = 0;
 }
 
-
-function buyStrength() {
+function buyStrength(num) {
     strength.cost = Math.floor(10 * Math.pow(1.1,strength.level));
-    if(money.total >= strength.cost){
-        strength.level = strength.level + 1;
-        energy.clickadd = strength.level + 1;
-        money.total = money.total - strength.cost;
-    }
-}
-function buyAnt(){
-    ants.cost = Math.floor(10 * Math.pow(1.1,ants.total));
-    if(money.total >= ants.cost){
-        ants.total = ants.total + 1;
-    	money.total = money.total - ants.cost;
-    }
-}
-function buyBee(){
-    bees.cost = Math.floor(10 * Math.pow(1.1,bees.total));
-    if(money.total >= bees.cost){
-        bees.total = bees.total + 1;
-    	money.total = money.total - bees.cost; 
+    if(money.total >= strength.cost*num){
+        strength.level = strength.level + num;
+        energy.clickadd = strength.level + num;
+        money.total = money.total - strength.cost*num;
     }
 }
 
-function buyBattery(){
+function buyAnt(num){
+    ants.cost = Math.floor(10 * Math.pow(1.1,ants.total));
+    if(money.total >= ants.cost*num){
+        ants.total = ants.total + num;
+    	money.total = money.total - ants.cost*num;
+    }
+}
+
+function buyBee(num){
+    bees.cost = Math.floor(10 * Math.pow(1.1,bees.total));
+    if(money.total >= bees.cost*num){
+        bees.total = bees.total + num;
+    	money.total = money.total - bees.cost*num; 
+    }
+}
+
+function buyBattery(num){
     battery.cost = Math.floor(10 * Math.pow(1.1,battery.level));
-    if(money.total >= battery.cost){
-        battery.level += 1;
-    	money.total = money.total - battery.cost;
+    if(money.total >= battery.cost*num){
+        battery.level += num;
+    	money.total = money.total - battery.cost*num;
     }    
 }
+
 function speed(number){
     spd = number;
     window.clearInterval(id);
@@ -139,7 +156,6 @@ function speed(number){
 var id = setInterval(update, spd);
 
 function update(){
-
     if(energy.total < battery.capacity) {
         energyAdd(ants.total);
         energyAdd(bees.total);
@@ -160,8 +176,10 @@ var interval = setInterval(function() {
     document.getElementById('battery.cost').innerHTML = Math.floor(10 * Math.pow(1.1,battery.level));
     document.getElementById('strength.cost').innerHTML = Math.floor(10 * Math.pow(1.1,strength.level));
     document.getElementById("energy.clickadd").innerHTML = energy.clickadd;
-    document.getElementById('strength.level').innerHTML = strength.level; 
-
+    document.getElementById('strength.level').innerHTML = strength.level;
+    document.getElementById('total.energy').innerHTML = total.energy;
+    document.getElementById('total.soldenergy').innerHTML = total.soldenergy;
+    document.getElementById('total.money').innerHTML = total.money;
 
     var current_progress = Math.round(energy.total/battery.capacity*100);
     $("#dynamic")
