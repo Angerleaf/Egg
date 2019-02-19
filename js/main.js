@@ -1,6 +1,7 @@
-var savegame;
+let savegame;
 
-var energy = {
+// Sets up the game stuff
+let energy = {
     name:'energy',
     total:0,
     clickadd:1,
@@ -35,10 +36,10 @@ total = {
     soldenergy:0,
     money:0,
 }
-var spd = 1000;
-
+let spd = 1000;
+// Saves the game state in a save file
 function saveG() {
-    var save = {
+    let save = {
         energy: energy,
         money: money,
         ants: ants,
@@ -49,7 +50,7 @@ function saveG() {
     }
     localStorage.setItem("save",JSON.stringify(save));
 }
-
+// Loads the game state from a save file
 function loadG() {
     savegame = JSON.parse(localStorage.getItem("save"));
     if (typeof savegame.energy !== "undefined") energy = savegame.energy;
@@ -60,7 +61,7 @@ function loadG() {
     if (typeof savegame.strength !== "undefined") strength = savegame.strength;
     if (typeof savegame.total !== "undefined") total = savegame.total;
 }
-
+// Resets the values of the game
 function resetG() {
     localStorage.removeItem("save")
     energy = {
@@ -99,21 +100,21 @@ function resetG() {
         money:0,
     }    
 }
-
+// Adds energy
 function energyAdd(number){
     if(energy.total < battery.capacity){
         energy.total = energy.total + number;
         total.energy += number;
     }   
 }
-
+// Sells the energy
 function energySell(){
     money.total += energy.total;
     total.soldenergy += energy.total;
     total.money += energy.total;
     energy.total = 0;
 }
-
+// Buys strength
 function buyStrength(num) {
     strength.cost = Math.floor(10 * Math.pow(1.1,strength.level));
     if(money.total >= strength.cost*num){
@@ -122,7 +123,7 @@ function buyStrength(num) {
         money.total = money.total - strength.cost*num;
     }
 }
-
+// Buys ants
 function buyAnt(num){
     ants.cost = Math.floor(10 * Math.pow(1.1,ants.total));
     if(money.total >= ants.cost*num){
@@ -130,7 +131,7 @@ function buyAnt(num){
     	money.total = money.total - ants.cost*num;
     }
 }
-
+// Buys bees
 function buyBee(num){
     bees.cost = Math.floor(10 * Math.pow(1.1,bees.total));
     if(money.total >= bees.cost*num){
@@ -138,7 +139,7 @@ function buyBee(num){
     	money.total = money.total - bees.cost*num; 
     }
 }
-
+// Buys the battery
 function buyBattery(num){
     battery.cost = Math.floor(10 * Math.pow(1.1,battery.level));
     if(money.total >= battery.cost*num){
@@ -147,13 +148,14 @@ function buyBattery(num){
     }    
 }
 
+// Sets the game speed
 function speed(number){
     spd = number;
     window.clearInterval(id);
     id = setInterval(update, spd);
 }
 
-var id = setInterval(update, spd);
+let id = setInterval(update, spd);
 
 function update(){
     if(energy.total < battery.capacity) {
@@ -162,8 +164,9 @@ function update(){
     }
 }
 
-var interval = setInterval(function() {
+let interval = setInterval(function() {
 
+    // Updates the HTML
     document.getElementById("battery.capacity").innerHTML = battery.capacity;
     document.getElementById('energy.total').innerHTML = energy.total; 
     document.getElementById('money.total').innerHTML = money.total;
