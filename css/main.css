@@ -1,3 +1,11 @@
 #upgrades{
     text-align: center;
 }
+.col-sm-4{
+    border-style: dashed;
+    border-radius: 5px;
+    border-width: 1px;
+    border-color: gray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
