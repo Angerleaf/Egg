@@ -193,7 +193,7 @@ let interval = setInterval(function () {
     document.getElementById('total.soldenergy').innerHTML = total.soldenergy;
     document.getElementById('total.money').innerHTML = total.money;
 
-    var current_progress = Math.round(energy.total / battery.capacity * 100);
+    let current_progress = Math.round(energy.total / battery.capacity * 100);
     $("#dynamic")
         .css("width", current_progress + "%")
         .attr("aria-valuenow", current_progress)
